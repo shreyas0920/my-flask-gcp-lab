@@ -27,7 +27,7 @@
 #     except requests.exceptions.RequestException as e:
 #         st.error(f'Error occurred during prediction: {str(e)}')
 
-# src/streamlit_app.py
+# modifications
 import streamlit as st
 import requests
 from predict import FEATURE_NAMES
@@ -55,34 +55,3 @@ if st.button("Predict"):
             st.error(f"API Error: {response.json().get('error', 'Unknown')}")
     except Exception as e:
         st.error(f"Connection failed: {e}")
-
-
-
-# # Final changes
-
-# import streamlit as st
-# import requests
-# from predict import FEATURE_NAMES 
-
-# st.title("Wine Quality Class Prediction")
-# st.write("Predict wine class (0, 1, or 2) using 13 chemical features.")
-
-# inputs = {}
-# for col in FEATURE_NAMES:
-#     clean_name = col.replace('_', ' ').title()
-#     default = 0.0
-#     if 'alcohol' in col: default = 13.0
-#     elif 'proline' in col: default = 700.0
-#     inputs[col] = st.number_input(clean_name, value=default, step=0.1)
-
-# if st.button("Predict"):
-#     try:
-#         response = requests.post("http://127.0.0.1:5000/predict", json=inputs)
-#         if response.status_code == 200:
-#             pred = response.json()['prediction']
-#             st.success(f"**Predicted Wine Class: {pred}**")
-#             st.balloons()
-#         else:
-#             st.error(f"API Error: {response.json().get('error', 'Unknown')}")
-#     except Exception as e:
-#         st.error(f"Connection failed: {e}")
